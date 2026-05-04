@@ -1,544 +1,379 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Shift — Daily AI News Podcast</title>
-  <meta name="description" content="Your daily AI news briefing in 8 languages. Hosted by John &amp; Paul. New episode every morning." />
+  <meta name="description" content="Your daily AI news briefing in 8 languages. Hosted by John & Paul. New episode every morning." />
   <meta property="og:title" content="AI Shift Podcast" />
   <meta property="og:description" content="Daily AI news in 8 languages. New episode every morning." />
+  <meta property="og:image" content="cover.jpg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            background: '#050508',
+            surface: '#0f0f16',
+            surface2: '#1a1a24',
+            accent: {
+              DEFAULT: '#ff6b35', // Orange from cover
+              glow: '#ff6b3540',
+            },
+            cyan: {
+              DEFAULT: '#00f0ff', // Neon blue from cover
+              glow: '#00f0ff40',
+            }
+          },
+          animation: {
+            'marquee': 'marquee 25s linear infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-100%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    /* ── Reset & tokens ───────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:         #0a0a0f;
-      --surface:    #111118;
-      --surface2:   #18181f;
-      --border:     rgba(255,255,255,0.07);
-      --accent:     #e8ff47;       /* electric chartreuse */
-      --accent2:    #ff6b35;       /* coral for secondary */
-      --text:       #f0f0f0;
-      --text-muted: #888;
-      --font-head:  'Bebas Neue', sans-serif;
-      --font-serif: 'DM Serif Display', serif;
-      --font-body:  'DM Sans', sans-serif;
-      --radius:     4px;
-      --max-w:      900px;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* ── Noise grain overlay ──────────────────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── Layout ───────────────────────────────────────────────────────── */
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── Header / Hero ────────────────────────────────────────────────── */
-    header {
-      padding: 60px 0 48px;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 32px;
-    }
-
-    .show-label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .show-label::before {
-      content: '';
-      width: 24px;
-      height: 2px;
-      background: var(--accent);
-      display: inline-block;
-    }
-
-    .show-title {
-      font-family: var(--font-head);
-      font-size: clamp(72px, 12vw, 120px);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-      color: var(--text);
-    }
-
-    .show-title span {
-      color: var(--accent);
-    }
-
-    .show-tagline {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 18px;
-      color: var(--text-muted);
-      margin-top: 16px;
-    }
-
-    .hero-meta {
-      text-align: right;
-    }
-
-    .hero-badge {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-
-    .hero-badge strong {
-      display: block;
-      font-size: 28px;
-      font-family: var(--font-head);
-      color: var(--accent2);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Language strip ───────────────────────────────────────────────── */
-    .lang-strip {
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .lang-strip::-webkit-scrollbar { display: none; }
-
-    .lang-chip {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      color: var(--text-muted);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .lang-strip-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-right: 4px;
-      flex-shrink: 0;
-    }
-
-    /* ── Main content ─────────────────────────────────────────────────── */
-    main {
-      padding: 56px 0 80px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── Episode archive list ─────────────────────────────────────────── */
-    .episode-archive {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    /* ── Episode card ─────────────────────────────────────────────────── */
-    .episode-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid transparent;
-      padding: 28px 32px;
-      transition: border-color 0.2s, background 0.2s;
-      position: relative;
-    }
-
-    .episode-card:first-of-type {
-      border-left-color: var(--accent);
-      background: var(--surface2);
-    }
-
-    .episode-card:hover {
-      border-left-color: var(--accent);
-      background: var(--surface2);
-    }
-
-    .ep-meta {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 10px;
-    }
-
-    .ep-date {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .ep-langs {
-      display: flex;
-      gap: 4px;
-    }
-
-    .ep-lang {
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      padding: 2px 5px;
-      background: rgba(232,255,71,0.08);
-      color: var(--accent);
-      border-radius: 2px;
-    }
-
-    .ep-title {
-      font-family: var(--font-head);
-      font-size: clamp(22px, 3vw, 30px);
-      letter-spacing: 0.03em;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .ep-hook {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 15px;
-      color: var(--accent2);
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .ep-description {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 16px;
-      max-width: 680px;
-    }
-
-    .ep-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-
-    .ep-tag {
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      color: var(--text-muted);
-    }
-
-    .ep-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .ep-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 9px 18px;
-      border-radius: var(--radius);
-      transition: all 0.15s;
-    }
-
-    .ep-btn--primary {
-      background: var(--accent);
-      color: #0a0a0f;
-    }
-
-    .ep-btn--primary:hover {
-      background: #fff;
-    }
-
-    .ep-btn--secondary {
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-    }
-
-    .ep-btn--secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* ── Empty state ──────────────────────────────────────────────────── */
-    .empty-state {
-      padding: 48px 0;
-      color: var(--text-muted);
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 18px;
-    }
-
-    /* ── Subscribe section ────────────────────────────────────────────── */
-    .subscribe-section {
-      margin-top: 64px;
-      padding: 40px;
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent2);
-      background: var(--surface);
-    }
-
-    .subscribe-section h3 {
-      font-family: var(--font-head);
-      font-size: 32px;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-
-    .subscribe-section p {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .platform-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .platform-link {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      border-radius: var(--radius);
-      transition: all 0.15s;
-    }
-
-    .platform-link:hover {
-      border-color: var(--accent2);
-      color: var(--accent2);
-    }
-
-    /* ── Footer ───────────────────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      font-family: var(--font-head);
-      font-size: 20px;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-    }
-
-    .footer-brand span { color: var(--accent); }
-
-    .footer-note {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* ── Entrance animation ───────────────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    header  { animation: fadeUp 0.6s ease both; }
-    main    { animation: fadeUp 0.6s 0.15s ease both; }
-
-    /* ── Responsive ───────────────────────────────────────────────────── */
-    @media (max-width: 600px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-meta { text-align: left; }
-      .episode-card { padding: 20px; }
-      .subscribe-section { padding: 24px; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-thumb { background: #1a1a24; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #ff6b35; }
+    
+    /* Noise Texture */
+    .bg-noise {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     }
   </style>
 </head>
-<body>
+<body class="bg-background text-gray-300 font-sans antialiased selection:bg-accent selection:text-white min-h-screen flex flex-col relative pb-24">
+  
+  <!-- Background Noise -->
+  <div class="fixed inset-0 pointer-events-none z-0 bg-noise opacity-50 mix-blend-overlay"></div>
 
-  <!-- ── HEADER ──────────────────────────────────────────────────────────── -->
-  <header>
-    <div class="container">
-      <div class="hero-grid">
-        <div>
-          <p class="show-label">Daily Briefing</p>
-          <h1 class="show-title">AI <span>SHIFT</span></h1>
-          <p class="show-tagline">The world's AI news — distilled to what matters.</p>
+  <!-- ── NAVBAR ──────────────────────────────────────────────────────────── -->
+  <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-accent to-cyan flex items-center justify-center">
+          <i class="ph-fill ph-microphone-stage text-white text-lg"></i>
         </div>
-        <div class="hero-meta">
-          <div class="hero-badge">
-            Available in<strong>8</strong>languages
+        <span class="font-display font-bold text-xl tracking-wide text-white uppercase">AI <span class="text-accent">Shift</span></span>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#episodes" class="hover:text-white transition-colors">Episodes</a>
+        <a href="#subscribe" class="hover:text-white transition-colors">Platforms</a>
+        <a href="#subscribe" class="px-5 py-2.5 rounded-full bg-white text-background hover:bg-gray-200 transition-colors">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO SECTION ────────────────────────────────────────────────────── -->
+  <header class="relative z-10 pt-36 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+    <!-- Glow effects -->
+    <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-accent-glow blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-glow blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-[1fr_400px] gap-16 items-center">
+      
+      <!-- Hero Text -->
+      <div class="flex flex-col items-start text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-widest uppercase text-cyan mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan"></span>
+          </span>
+          Daily Briefing
+        </div>
+        
+        <h1 class="font-display font-bold text-5xl md:text-7xl leading-[1.1] text-white mb-6 uppercase tracking-tight">
+          The World's <br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-[#ff8fa3] to-cyan">AI News.</span><br/>
+          Distilled.
+        </h1>
+        
+        <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-lg leading-relaxed">
+          Your daily AI news briefing in 8 languages. Hosted by John & Paul. Auto-published every morning to keep you ahead of the curve.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#episodes" class="group relative flex items-center gap-3 px-8 py-4 bg-accent text-white rounded-full font-semibold uppercase tracking-wide overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,107,53,0.5)]">
+            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            <i class="ph-fill ph-play-circle text-2xl relative z-10"></i>
+            <span class="relative z-10">Latest Episode</span>
+          </a>
+          <a href="#subscribe" class="flex items-center gap-3 px-8 py-4 bg-surface2 border border-white/10 hover:border-white/30 text-white rounded-full font-semibold uppercase tracking-wide transition-all">
+            <i class="ph ph-headphones text-xl"></i>
+            Listen On
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="relative group mx-auto w-full max-w-[360px] md:max-w-none">
+        <div class="absolute -inset-1 bg-gradient-to-tr from-accent to-cyan rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
+        <img src="cover.jpg" alt="AI Shift Podcast Cover" class="relative w-full aspect-square object-cover rounded-2xl shadow-2xl border border-white/10 transition-transform duration-500 group-hover:scale-[1.02]" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop'; this.onerror=null;" />
+        
+        <!-- Badge -->
+        <div class="absolute -bottom-4 -right-4 bg-surface border border-white/10 rounded-xl p-4 shadow-xl backdrop-blur-sm">
+          <div class="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-1">Available In</div>
+          <div class="text-2xl font-display font-bold text-white flex items-center gap-2">
+            8 <span class="text-cyan">Languages</span>
           </div>
         </div>
       </div>
+
     </div>
   </header>
 
-  <!-- ── LANGUAGE STRIP ──────────────────────────────────────────────────── -->
-  <div class="lang-strip container">
-    <span class="lang-strip-label">Published in</span>
-    <span class="lang-chip">🇪🇸 Spanish</span>
-    <span class="lang-chip">🇫🇷 French</span>
-    <span class="lang-chip">🇩🇪 German</span>
-    <span class="lang-chip">🇧🇷 Portuguese</span>
-    <span class="lang-chip">🇯🇵 Japanese</span>
-    <span class="lang-chip">🇨🇳 Mandarin</span>
-    <span class="lang-chip">🇸🇦 Arabic</span>
-    <span class="lang-chip">🇮🇳 Hindi</span>
+  <!-- ── LANGUAGE TICKER ─────────────────────────────────────────────────── -->
+  <div class="relative z-10 border-y border-white/5 bg-surface/50 overflow-hidden flex">
+    <div class="py-4 flex whitespace-nowrap animate-marquee items-center">
+      <!-- Repeated for smooth infinite scroll -->
+      <div class="flex items-center gap-8 px-4">
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> English</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Spanish</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> French</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> German</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Portuguese</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Japanese</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Mandarin</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Arabic</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Hindi</span>
+      </div>
+      <div class="flex items-center gap-8 px-4">
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> English</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Spanish</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> French</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> German</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Portuguese</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Japanese</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Mandarin</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Arabic</span>
+        <span class="text-white/20">•</span>
+        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Hindi</span>
+      </div>
+    </div>
   </div>
 
-  <!-- ── MAIN ────────────────────────────────────────────────────────────── -->
-  <main>
-    <div class="container">
+  <!-- ── MAIN CONTENT ────────────────────────────────────────────────────── -->
+  <main class="relative z-10 py-24" id="episodes">
+    <div class="max-w-4xl mx-auto px-6">
 
-      <p class="section-label">Latest Episodes</p>
+      <div class="flex items-center justify-between mb-12">
+        <h2 class="font-display text-3xl font-bold text-white flex items-center gap-3">
+          <i class="ph ph-list-dashes text-accent"></i> All Episodes
+        </h2>
+        <div class="text-sm font-medium text-gray-400">Sort: Newest First</div>
+      </div>
 
-      <div class="episode-archive">
+      <div class="flex flex-col gap-4" id="episode-list">
 
         <!-- EPISODE_ARCHIVE_START -->
 <!-- EPISODE_CARD_START -->
-<article class="episode-card" data-date="2026-05-04">
-  <div class="ep-meta">
-    <time class="ep-date" datetime="2026-05-04">May 04, 2026</time>
-    <div class="ep-langs"><span class="ep-lang">EN</span></div>
+<article class="episode-card group bg-surface border border-white/5 rounded-2xl p-6 md:p-8 hover:bg-surface2 hover:border-white/10 transition-all duration-300 relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-8" data-date="2026-05-04">
+  
+  <!-- Left/Top: Play Button & Date -->
+  <div class="flex md:flex-col items-center md:items-start justify-between md:justify-start md:w-32 flex-shrink-0 gap-4">
+    <button class="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent group-hover:scale-110 transition-all duration-300 shadow-lg">
+      <i class="ph-fill ph-play text-xl ml-1"></i>
+    </button>
+    <div class="text-right md:text-left">
+      <time class="block text-sm font-semibold text-white mb-1" datetime="2026-05-04">May 04</time>
+      <span class="block text-xs text-gray-500 font-medium">2026</span>
+    </div>
   </div>
-  <h2 class="ep-title">AI News — May 04, 2026</h2>
-  <p class="ep-hook">Elon Musk took the stand this week, accusing OpenAI of abandoning its founding mission to benefit humanity, calling their new focus &#39;catastrophic&#39;.</p>
-  <p class="ep-description">This episode covers the high-stakes Musk v. Altman trial, the introduction of a new household companion robot, and the growing challenges of physical AI governance.</p>
-  <div class="ep-tags"><span class="ep-tag">AI</span><span class="ep-tag">OpenAI</span><span class="ep-tag">Elon Musk</span><span class="ep-tag">AI Governance</span><span class="ep-tag">Companion Robots</span><span class="ep-tag">Artificial Intelligence</span></div>
-  <div class="ep-actions">
-    <a class="ep-btn ep-btn--primary" href="https://www.buzzsprout.com/2615378/episodes/19123390-musk-v-openai-trial-rocks-ai-world-governance-robots.mp3" target="_blank" rel="noopener">&#9654; Listen</a>
-    <a class="ep-btn ep-btn--secondary" href="https://www.buzzsprout.com/2615378/episodes/19123390-musk-v-openai-trial-rocks-ai-world-governance-robots.mp3" target="_blank" rel="noopener">Subscribe</a>
+
+  <!-- Center: Content -->
+  <div class="flex-grow">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="px-2 py-1 rounded bg-cyan/10 text-cyan text-xs font-bold tracking-wider uppercase">EN</span>
+      <span class="text-xs text-gray-500 font-medium flex items-center gap-1"><i class="ph ph-clock"></i> 18 min</span>
+    </div>
+    
+    <h3 class="font-display text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+      <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="before:absolute before:inset-0">AI News — May 04, 2026</a>
+    </h3>
+    
+    <p class="text-accent text-sm font-medium italic mb-3">
+      "Elon Musk took the stand this week, accusing OpenAI of abandoning its founding mission to benefit humanity, calling their new focus 'catastrophic'."
+    </p>
+    
+    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+      This episode covers the high-stakes Musk v. Altman trial, the introduction of a new household companion robot, and the growing challenges of physical AI governance.
+    </p>
+
+    <div class="flex flex-wrap gap-2">
+      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">OpenAI</span>
+      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">Elon Musk</span>
+      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">AI Governance</span>
+      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">Robotics</span>
+    </div>
+  </div>
+
+  <!-- Right/Bottom: Actions -->
+  <div class="flex md:flex-col justify-end gap-3 flex-shrink-0 relative z-10">
+    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors tooltip-trigger" title="Share Episode">
+      <i class="ph ph-share-network text-lg"></i>
+    </a>
+    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" title="Download">
+      <i class="ph ph-download-simple text-lg"></i>
+    </a>
   </div>
 </article>
 <!-- EPISODE_CARD_END -->
-        <!-- New episode cards are automatically prepended here by the pipeline -->
         <!-- EPISODE_ARCHIVE_END -->
 
-        <div class="empty-state" id="empty-msg">
-          First episode drops tomorrow morning — subscribe so you don't miss it.
+        <!-- Empty State (Hidden via JS if episodes exist) -->
+        <div id="empty-msg" class="py-16 text-center border border-dashed border-white/10 rounded-2xl bg-surface/50">
+          <i class="ph ph-calendar-blank text-4xl text-gray-600 mb-4 inline-block"></i>
+          <p class="font-display text-xl text-gray-300 mb-2">No episodes yet</p>
+          <p class="text-sm text-gray-500">The first episode drops tomorrow morning. Subscribe below!</p>
         </div>
 
       </div>
 
-      <!-- ── Subscribe ─────────────────────────────────────────────────── -->
-      <div class="subscribe-section">
-        <h3>SUBSCRIBE</h3>
-        <p>New episode every morning. Listen wherever you get your podcasts.</p>
-        <div class="platform-links">
-          <a class="platform-link" href="#" target="_blank" rel="noopener">Spotify</a>
-          <a class="platform-link" href="#" target="_blank" rel="noopener">Apple Podcasts</a>
-          <a class="platform-link" href="#" target="_blank" rel="noopener">Pocket Casts</a>
-          <a class="platform-link" href="#" target="_blank" rel="noopener">Overcast</a>
-          <a class="platform-link" href="#" target="_blank" rel="noopener">RSS Feed</a>
+      <!-- ── SUBSCRIBE SECTION ───────────────────────────────────────────── -->
+      <div id="subscribe" class="mt-24 p-8 md:p-12 rounded-3xl bg-gradient-to-br from-surface2 to-surface border border-white/10 relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-64 h-64 bg-accent/20 blur-[80px] rounded-full"></div>
+        
+        <div class="relative z-10 text-center max-w-2xl mx-auto">
+          <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6">
+            <i class="ph ph-rss-simple text-3xl text-accent"></i>
+          </div>
+          <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Never Miss an Update</h3>
+          <p class="text-gray-400 mb-10">New episode every morning. Listen wherever you get your podcasts. Available in 8 languages to keep the whole world informed.</p>
+          
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="#" class="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-[#1DB954] hover:border-[#1DB954] transition-all duration-300">
+              <i class="ph-fill ph-spotify-logo text-xl"></i> Spotify
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-[#b058e8] hover:border-[#b058e8] transition-all duration-300">
+              <i class="ph-fill ph-podcast text-xl"></i> Apple Podcasts
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-[#f33c3a] hover:border-[#f33c3a] transition-all duration-300">
+              <i class="ph-fill ph-play-circle text-xl"></i> Pocket Casts
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-accent hover:border-accent transition-all duration-300">
+              <i class="ph-fill ph-rss text-xl"></i> RSS Feed
+            </a>
+          </div>
         </div>
       </div>
 
     </div>
   </main>
 
+  <!-- ── GLOBAL AUDIO PLAYER (MOCKUP) ────────────────────────────────────── -->
+  <div class="fixed bottom-0 left-0 w-full bg-background/95 backdrop-blur-lg border-t border-white/10 z-50 transform translate-y-0 transition-transform duration-300" id="global-player">
+    <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Track Info -->
+      <div class="flex items-center gap-4 hidden sm:flex w-1/3">
+        <img src="cover.jpg" class="w-12 h-12 rounded-lg border border-white/10 object-cover" alt="Cover" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=100&auto=format&fit=crop';">
+        <div class="overflow-hidden">
+          <div class="text-sm font-bold text-white truncate">AI News — May 04, 2026</div>
+          <div class="text-xs text-gray-500 truncate">AI Shift Daily</div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex flex-col items-center justify-center w-full sm:w-1/3 max-w-md">
+        <div class="flex items-center gap-6 mb-1">
+          <button class="text-gray-400 hover:text-white transition"><i class="ph-fill ph-rewind-circle text-2xl"></i></button>
+          <button class="w-10 h-10 rounded-full bg-white text-background flex items-center justify-center hover:scale-105 transition">
+            <i class="ph-fill ph-play text-xl ml-0.5"></i>
+          </button>
+          <button class="text-gray-400 hover:text-white transition"><i class="ph-fill ph-fast-forward-circle text-2xl"></i></button>
+        </div>
+        <!-- Progress Bar Mock -->
+        <div class="w-full flex items-center gap-2 text-[10px] text-gray-500 font-medium">
+          <span>00:00</span>
+          <div class="h-1 flex-grow bg-white/10 rounded-full overflow-hidden relative cursor-pointer">
+            <div class="absolute top-0 left-0 h-full w-0 bg-accent rounded-full"></div>
+          </div>
+          <span>18:42</span>
+        </div>
+      </div>
+
+      <!-- Volume/Extra -->
+      <div class="w-1/3 justify-end items-center gap-4 hidden md:flex text-gray-400">
+        <button class="hover:text-white transition"><i class="ph ph-speaker-high text-xl"></i></button>
+        <div class="w-24 h-1 bg-white/10 rounded-full overflow-hidden">
+          <div class="w-2/3 h-full bg-gray-400 rounded-full"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <span class="footer-brand">AI <span>SHIFT</span></span>
-        <span class="footer-note">Auto-published daily · Hosted by John &amp; Paul · Powered by Gemini + ElevenLabs</span>
+  <footer class="relative z-10 border-t border-white/5 bg-background pt-16 pb-32">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded border border-white/20 flex items-center justify-center bg-white/5">
+            <i class="ph-fill ph-microphone-stage text-gray-400 text-xs"></i>
+          </div>
+          <span class="font-display font-bold text-lg text-gray-400 uppercase">AI <span class="text-accent">Shift</span></span>
+        </div>
+        
+        <p class="text-xs text-gray-500 font-medium text-center md:text-right max-w-sm">
+          Auto-published daily · Hosted by John & Paul.<br/>
+          Powered by Gemini + ElevenLabs.
+        </p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Hide empty state once real episode cards exist
     document.addEventListener('DOMContentLoaded', () => {
-      const cards  = document.querySelectorAll('.episode-card');
-      const empty  = document.getElementById('empty-msg');
-      if (cards.length > 0 && empty) empty.style.display = 'none';
+      // Hide empty state logic
+      const cards = document.querySelectorAll('.episode-card');
+      const empty = document.getElementById('empty-msg');
+      if (cards.length > 0 && empty) {
+        empty.style.display = 'none';
+      }
     });
   </script>
 
