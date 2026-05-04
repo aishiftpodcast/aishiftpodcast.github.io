@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="hi" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Shift — Daily AI News Podcast</title>
-  <meta name="description" content="Your daily AI news briefing in 8 languages. New episode every morning." />
-  <meta property="og:title" content="AI Shift Podcast" />
-  <meta property="og:description" content="Daily AI news in 8 languages. New episode every morning." />
+  <title>AI बदलाव — दैनिक AI न्यूज़ पॉडकास्ट</title>
+  <meta name="description" content="आपका दैनिक AI न्यूज़ पॉडकास्ट। हर सुबह एक नया एपिसोड।" />
+  <meta property="og:title" content="AI बदलाव पॉडकास्ट" />
+  <meta property="og:description" content="दैनिक AI न्यूज़। हर सुबह एक नया एपिसोड।" />
   <meta property="og:image" content="cover.jpg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -14,7 +14,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700;800&family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   
   <!-- Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -27,8 +27,8 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Outfit', 'sans-serif'],
+            sans: ['Inter', 'Noto Sans Devanagari', 'sans-serif'],
+            display: ['Outfit', 'Noto Sans Devanagari', 'sans-serif'],
           },
           colors: {
             background: '#050508',
@@ -44,14 +44,7 @@
             }
           },
           animation: {
-            'marquee': 'marquee 25s linear infinite',
             'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            marquee: {
-              '0%': { transform: 'translateX(0%)' },
-              '100%': { transform: 'translateX(-100%)' },
-            }
           }
         }
       }
@@ -83,12 +76,12 @@
         <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-accent to-cyan flex items-center justify-center">
           <i class="ph-fill ph-microphone-stage text-white text-lg"></i>
         </div>
-        <span class="font-display font-bold text-xl tracking-wide text-white uppercase">AI <span class="text-accent">Shift</span></span>
+        <span class="font-display font-bold text-xl tracking-wide text-white uppercase">AI <span class="text-accent">बदलाव</span></span>
       </div>
       <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-        <a href="#episodes" class="hover:text-white transition-colors">Episodes</a>
-        <a href="#subscribe" class="hover:text-white transition-colors">Platforms</a>
-        <a href="#subscribe" class="px-5 py-2.5 rounded-full bg-white text-background hover:bg-gray-200 transition-colors">Subscribe</a>
+        <a href="#episodes" class="hover:text-white transition-colors">एपिसोड</a>
+        <a href="#subscribe" class="hover:text-white transition-colors">प्लेटफॉर्म</a>
+        <a href="#subscribe" class="px-5 py-2.5 rounded-full bg-white text-background hover:bg-gray-200 transition-colors">सब्सक्राइब</a>
       </div>
     </div>
   </nav>
@@ -108,28 +101,28 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan"></span>
           </span>
-          Daily Briefing
+          दैनिक ब्रीफिंग
         </div>
         
         <h1 class="font-display font-bold text-5xl md:text-7xl leading-[1.1] text-white mb-6 uppercase tracking-tight">
-          The World's <br/>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-[#ff8fa3] to-cyan">AI News.</span><br/>
-          Distilled.
+          दुनिया की <br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-[#ff8fa3] to-cyan">AI खबरें।</span><br/>
+          संक्षेप में।
         </h1>
         
         <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-lg leading-relaxed">
-          Your daily AI news briefing in 8 languages. Auto-published every morning to keep you ahead of the curve.
+          आपका दैनिक AI न्यूज़ पॉडकास्ट। आपको तकनीक की दुनिया में सबसे आगे रखने के लिए हर सुबह एक नया एपिसोड।
         </p>
 
         <div class="flex flex-wrap items-center gap-4">
           <a href="#episodes" class="group relative flex items-center gap-3 px-8 py-4 bg-accent text-white rounded-full font-semibold uppercase tracking-wide overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(255,107,53,0.5)]">
             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             <i class="ph-fill ph-play-circle text-2xl relative z-10"></i>
-            <span class="relative z-10">Latest Episode</span>
+            <span class="relative z-10">नवीनतम एपिसोड</span>
           </a>
           <a href="#subscribe" class="flex items-center gap-3 px-8 py-4 bg-surface2 border border-white/10 hover:border-white/30 text-white rounded-full font-semibold uppercase tracking-wide transition-all">
             <i class="ph ph-headphones text-xl"></i>
-            Listen On
+            यहाँ सुनें
           </a>
         </div>
       </div>
@@ -137,13 +130,13 @@
       <!-- Hero Image -->
       <div class="relative group mx-auto w-full max-w-[360px] md:max-w-none">
         <div class="absolute -inset-1 bg-gradient-to-tr from-accent to-cyan rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
-        <img src="cover.jpg" alt="AI Shift Podcast Cover" class="relative w-full aspect-square object-cover rounded-2xl shadow-2xl border border-white/10 transition-transform duration-500 group-hover:scale-[1.02]" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop'; this.onerror=null;" />
+        <img src="cover.jpg" alt="AI बदलाव पॉडकास्ट कवर" class="relative w-full aspect-square object-cover rounded-2xl shadow-2xl border border-white/10 transition-transform duration-500 group-hover:scale-[1.02]" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop'; this.onerror=null;" />
         
         <!-- Badge -->
         <div class="absolute -bottom-4 -right-4 bg-surface border border-white/10 rounded-xl p-4 shadow-xl backdrop-blur-sm">
-          <div class="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-1">Available In</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-1">अब उपलब्ध है</div>
           <div class="text-2xl font-display font-bold text-white flex items-center gap-2">
-            8 <span class="text-cyan">Languages</span>
+            सिर्फ <span class="text-cyan">हिन्दी में</span>
           </div>
         </div>
       </div>
@@ -151,60 +144,15 @@
     </div>
   </header>
 
-  <!-- ── LANGUAGE TICKER ─────────────────────────────────────────────────── -->
-  <div class="relative z-10 border-y border-white/5 bg-surface/50 overflow-hidden flex">
-    <div class="py-4 flex whitespace-nowrap animate-marquee items-center">
-      <!-- Repeated for smooth infinite scroll -->
-      <div class="flex items-center gap-8 px-4">
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> English</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Spanish</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> French</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> German</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Portuguese</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Japanese</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Mandarin</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Arabic</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Hindi</span>
-      </div>
-      <div class="flex items-center gap-8 px-4">
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> English</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Spanish</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> French</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> German</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Portuguese</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Japanese</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Mandarin</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Arabic</span>
-        <span class="text-white/20">•</span>
-        <span class="flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-400"><i class="ph ph-translate text-cyan"></i> Hindi</span>
-      </div>
-    </div>
-  </div>
-
   <!-- ── MAIN CONTENT ────────────────────────────────────────────────────── -->
   <main class="relative z-10 py-24" id="episodes">
     <div class="max-w-4xl mx-auto px-6">
 
       <div class="flex items-center justify-between mb-12">
         <h2 class="font-display text-3xl font-bold text-white flex items-center gap-3">
-          <i class="ph ph-list-dashes text-accent"></i> All Episodes
+          <i class="ph ph-list-dashes text-accent"></i> सभी एपिसोड
         </h2>
-        <div class="text-sm font-medium text-gray-400">Sort: Newest First</div>
+        <div class="text-sm font-medium text-gray-400">क्रम: सबसे नया पहले</div>
       </div>
 
       <div class="flex flex-col gap-4" id="episode-list">
@@ -219,7 +167,7 @@
       <i class="ph-fill ph-play text-xl ml-1"></i>
     </button>
     <div class="text-right md:text-left">
-      <time class="block text-sm font-semibold text-white mb-1" datetime="2026-05-04">May 04</time>
+      <time class="block text-sm font-semibold text-white mb-1" datetime="2026-05-04">04 मई</time>
       <span class="block text-xs text-gray-500 font-medium">2026</span>
     </div>
   </div>
@@ -227,36 +175,36 @@
   <!-- Center: Content -->
   <div class="flex-grow">
     <div class="flex items-center gap-3 mb-3">
-      <span class="px-2 py-1 rounded bg-cyan/10 text-cyan text-xs font-bold tracking-wider uppercase">EN</span>
-      <span class="text-xs text-gray-500 font-medium flex items-center gap-1"><i class="ph ph-clock"></i> 18 min</span>
+      <span class="px-2 py-1 rounded bg-cyan/10 text-cyan text-xs font-bold tracking-wider uppercase">HI</span>
+      <span class="text-xs text-gray-500 font-medium flex items-center gap-1"><i class="ph ph-clock"></i> 18 मिनट</span>
     </div>
     
     <h3 class="font-display text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
-      <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="before:absolute before:inset-0">AI News — May 04, 2026</a>
+      <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="before:absolute before:inset-0">AI न्यूज़ — 04 मई, 2026</a>
     </h3>
     
     <p class="text-accent text-sm font-medium italic mb-3">
-      "Elon Musk took the stand this week, accusing OpenAI of abandoning its founding mission to benefit humanity, calling their new focus 'catastrophic'."
+      "एलन मस्क ने इस हफ्ते OpenAI पर मानवता की भलाई के अपने मूल मिशन को छोड़ने का आरोप लगाया, और उनके नए फोकस को 'विनाशकारी' बताया।"
     </p>
     
     <p class="text-gray-400 text-sm leading-relaxed mb-6">
-      This episode covers the high-stakes Musk v. Altman trial, the introduction of a new household companion robot, and the growing challenges of physical AI governance.
+      इस एपिसोड में हम मस्क बनाम ऑल्टमैन के हाई-स्टेक ट्रायल, नए घरेलू साथी रोबोट की शुरुआत, और भौतिक AI गवर्नेंस की बढ़ती चुनौतियों पर चर्चा करेंगे।
     </p>
 
     <div class="flex flex-wrap gap-2">
       <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">OpenAI</span>
-      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">Elon Musk</span>
-      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">AI Governance</span>
-      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">Robotics</span>
+      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">एलन मस्क</span>
+      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">AI गवर्नेंस</span>
+      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">रोबोटिक्स</span>
     </div>
   </div>
 
   <!-- Right/Bottom: Actions -->
   <div class="flex md:flex-col justify-end gap-3 flex-shrink-0 relative z-10">
-    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors tooltip-trigger" title="Share Episode">
+    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors tooltip-trigger" title="एपिसोड शेयर करें">
       <i class="ph ph-share-network text-lg"></i>
     </a>
-    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" title="Download">
+    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" title="डाउनलोड करें">
       <i class="ph ph-download-simple text-lg"></i>
     </a>
   </div>
@@ -267,8 +215,8 @@
         <!-- Empty State (Hidden via JS if episodes exist) -->
         <div id="empty-msg" class="py-16 text-center border border-dashed border-white/10 rounded-2xl bg-surface/50">
           <i class="ph ph-calendar-blank text-4xl text-gray-600 mb-4 inline-block"></i>
-          <p class="font-display text-xl text-gray-300 mb-2">No episodes yet</p>
-          <p class="text-sm text-gray-500">The first episode drops tomorrow morning. Subscribe below!</p>
+          <p class="font-display text-xl text-gray-300 mb-2">अभी तक कोई एपिसोड नहीं</p>
+          <p class="text-sm text-gray-500">पहला एपिसोड कल सुबह आएगा। नीचे सब्सक्राइब करें!</p>
         </div>
 
       </div>
@@ -281,8 +229,8 @@
           <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6">
             <i class="ph ph-rss-simple text-3xl text-accent"></i>
           </div>
-          <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Never Miss an Update</h3>
-          <p class="text-gray-400 mb-10">New episode every morning. Listen wherever you get your podcasts. Available in 8 languages to keep the whole world informed.</p>
+          <h3 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">कभी कोई अपडेट न चूकें</h3>
+          <p class="text-gray-400 mb-10">हर सुबह नया एपिसोड। अपने पसंदीदा पॉडकास्ट ऐप पर सुनें।</p>
           
           <div class="flex flex-wrap justify-center gap-4">
             <a href="#" class="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-[#1DB954] hover:border-[#1DB954] transition-all duration-300">
@@ -312,8 +260,8 @@
       <div class="flex items-center gap-4 hidden sm:flex w-1/3">
         <img src="cover.jpg" class="w-12 h-12 rounded-lg border border-white/10 object-cover" alt="Cover" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=100&auto=format&fit=crop';">
         <div class="overflow-hidden">
-          <div class="text-sm font-bold text-white truncate">AI News — May 04, 2026</div>
-          <div class="text-xs text-gray-500 truncate">AI Shift Daily</div>
+          <div class="text-sm font-bold text-white truncate">AI न्यूज़ — 04 मई, 2026</div>
+          <div class="text-xs text-gray-500 truncate">AI बदलाव दैनिक</div>
         </div>
       </div>
 
@@ -355,12 +303,12 @@
           <div class="w-6 h-6 rounded border border-white/20 flex items-center justify-center bg-white/5">
             <i class="ph-fill ph-microphone-stage text-gray-400 text-xs"></i>
           </div>
-          <span class="font-display font-bold text-lg text-gray-400 uppercase">AI <span class="text-accent">Shift</span></span>
+          <span class="font-display font-bold text-lg text-gray-400 uppercase">AI <span class="text-accent">बदलाव</span></span>
         </div>
         
         <p class="text-xs text-gray-500 font-medium text-center md:text-right max-w-sm">
-          Auto-published daily.<br/>
-          Powered by Gemini + ElevenLabs.
+          रोज़ाना ऑटो-पब्लिश।<br/>
+          जेमिनी + इलेवनलैब्स द्वारा संचालित।
         </p>
       </div>
     </div>
