@@ -134,82 +134,30 @@
           <i class="ph ph-list-dashes text-accent"></i> All Episodes
         </h2>
       </div>
-
+<div class="flex flex-wrap gap-3 mb-8">
+  <button onclick="filterLanguage('all')" class="lang-filter px-4 py-2 rounded-full bg-accent text-background font-bold text-xs uppercase tracking-widest transition-all">All</button>
+  <button onclick="filterLanguage('hindi')" class="lang-filter px-4 py-2 rounded-full bg-surface2 border border-white/10 text-gray-400 font-bold text-xs uppercase tracking-widest hover:border-accent transition-all">Hindi</button>
+  <button onclick="filterLanguage('arabic')" class="lang-filter px-4 py-2 rounded-full bg-surface2 border border-white/10 text-gray-400 font-bold text-xs uppercase tracking-widest hover:border-accent transition-all">Arabic</button>
+  <button onclick="filterLanguage('korean')" class="lang-filter px-4 py-2 rounded-full bg-surface2 border border-white/10 text-gray-400 font-bold text-xs uppercase tracking-widest hover:border-accent transition-all">Korean</button>
+</div>
       <div class="flex flex-col gap-4" id="episode-list">
 
-      <!-- EPISODE_ARCHIVE_START -->
-<!-- EPISODE_CARD_START -->
-<article class="episode-card" data-date="2026-05-06">
-  <div class="ep-meta">
-    <time class="ep-date" datetime="2026-05-06">May 06, 2026</time>
-    <div class="ep-langs"><span class="ep-lang">HI</span><span class="ep-lang">AR</span><span class="ep-lang">KO</span></div>
-  </div>
-  <h2 class="ep-title">AI News: Floating Data Centers &amp; Google Search</h2>
-  <p class="ep-hook">Silicon Valley investors are now betting hundreds of millions on floating AI data centers in the middle of the ocean.</p>
-  <p class="ep-description">Dive into today&#39;s AI news: Google&#39;s new AI search features, Apple&#39;s Siri settlement, and the wild world of floating AI data centers. Stay updated on the latest AI developments.</p>
-  <div class="ep-tags"><span class="ep-tag">AI News</span><span class="ep-tag">Google AI Search</span><span class="ep-tag">Apple Siri</span><span class="ep-tag">AI Data Centers</span><span class="ep-tag">Tech Lawsuits</span><span class="ep-tag">AI Innovation</span></div>
-  <div class="ep-actions">
-    <a class="ep-btn ep-btn--primary" href="https://www.buzzsprout.com/2615378/episodes/19134525-ai-google-apple.mp3" target="_blank" rel="noopener">&#9654; HI</a>
-    <a class="ep-btn ep-btn--primary" href="https://www.buzzsprout.com/2615698/episodes/19134543-ai.mp3" target="_blank" rel="noopener">&#9654; AR</a>
-    <a class="ep-btn ep-btn--primary" href="https://www.buzzsprout.com/2615646/episodes/19134571-ai.mp3" target="_blank" rel="noopener">&#9654; KO</a>
-    <a class="ep-btn ep-btn--secondary" href="https://www.buzzsprout.com/2615378/episodes/19134525-ai-google-apple.mp3" target="_blank" rel="noopener">Subscribe</a>
-  </div>
-</article>
-<!-- EPISODE_CARD_END -->
-
-<!-- EPISODE_CARD_START -->
-<article class="episode-card group bg-surface border border-white/5 rounded-2xl p-6 md:p-8 hover:bg-surface2 hover:border-white/10 transition-all duration-300 relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-8" data-date="2026-05-04">
-  
-  <!-- Left/Top: Play Button & Date -->
-  <div class="flex md:flex-col items-center md:items-start justify-between md:justify-start md:w-32 flex-shrink-0 gap-4">
-    <button class="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent group-hover:scale-110 transition-all duration-300 shadow-lg">
-      <i class="ph-fill ph-play text-xl ml-1"></i>
-    </button>
-    <div class="text-right md:text-left">
-      <time class="block text-sm font-semibold text-white mb-1" datetime="2026-05-04">04 मई</time>
-      <span class="block text-xs text-gray-500 font-medium">2026</span>
-    </div>
+<div id="player-container">
+  <div class="language-section" data-lang="hindi">
+    <div id='buzzsprout-player-hindi'></div>
+    <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2615378.js?container_id=buzzsprout-player-hindi&player=large'></script>
   </div>
 
-  <!-- Center: Content -->
-  <div class="flex-grow">
-    <div class="flex items-center gap-3 mb-3">
-      <span class="px-2 py-1 rounded bg-cyan/10 text-cyan text-xs font-bold tracking-wider uppercase">HI</span>
-      <span class="text-xs text-gray-500 font-medium flex items-center gap-1"><i class="ph ph-clock"></i> 18 मिनट</span>
-    </div>
-    
-    <h3 class="font-display text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
-      <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="before:absolute before:inset-0">AI न्यूज़ — 04 मई, 2026</a>
-    </h3>
-    
-    <p class="text-accent text-sm font-medium italic mb-3">
-      "एलन मस्क ने इस हफ्ते OpenAI पर मानवता की भलाई के अपने मूल मिशन को छोड़ने का आरोप लगाया, और उनके नए फोकस को 'विनाशकारी' बताया।"
-    </p>
-    
-    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-      इस एपिसोड में हम मस्क बनाम ऑल्टमैन के हाई-स्टेक ट्रायल, नए घरेलू साथी रोबोट की शुरुआत, और भौतिक AI गवर्नेंस की बढ़ती चुनौतियों पर चर्चा करेंगे।
-    </p>
-
-    <div class="flex flex-wrap gap-2">
-      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">OpenAI</span>
-      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">एलन मस्क</span>
-      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">AI गवर्नेंस</span>
-      <span class="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-gray-400">रोबोटिक्स</span>
-    </div>
+  <div class="language-section" data-lang="arabic">
+    <div id='buzzsprout-player-arabic'></div>
+    <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2615698.js?container_id=buzzsprout-player-arabic&player=large'></script>
   </div>
 
-  <!-- Right/Bottom: Actions -->
-  <div class="flex md:flex-col justify-end gap-3 flex-shrink-0 relative z-10">
-    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors tooltip-trigger" title="एपिसोड शेयर करें">
-      <i class="ph ph-share-network text-lg"></i>
-    </a>
-    <a href="https://www.buzzsprout.com/2615378/episodes/19123390" target="_blank" class="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" title="डाउनलोड करें">
-      <i class="ph ph-download-simple text-lg"></i>
-    </a>
+  <div class="language-section" data-lang="korean">
+    <div id='buzzsprout-player-korean'></div>
+    <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2615646.js?container_id=buzzsprout-player-korean&player=large'></script>
   </div>
-</article>
-<!-- EPISODE_CARD_END -->
-        <!-- EPISODE_ARCHIVE_END -->
+</div>
 
         <!-- Empty State -->
         <div id="empty-msg" class="py-16 text-center border border-dashed border-white/10 rounded-2xl bg-surface/50">
@@ -266,7 +214,37 @@
     </div>
   </footer>
 
-  <script>
+ 
+<script>
+    // This function must be outside the DOMContentLoaded block to be "seen" by onclick attributes
+    function filterLanguage(lang) {
+      const sections = document.querySelectorAll('.language-section');
+      const buttons = document.querySelectorAll('.lang-filter');
+
+      // Toggle Player Visibility
+      sections.forEach(section => {
+        if (lang === 'all' || section.getAttribute('data-lang') === lang) {
+          section.style.display = 'block';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+
+      // Update Button Styles
+      buttons.forEach(btn => {
+        // Clean up text comparison to match 'hindi', 'arabic', 'korean', or 'all'
+        const btnText = btn.innerText.toLowerCase().trim();
+        if (btnText === lang) {
+          btn.classList.add('bg-accent', 'text-background');
+          btn.classList.remove('bg-surface2', 'text-gray-400');
+        } else {
+          btn.classList.remove('bg-accent', 'text-background');
+          btn.classList.add('bg-surface2', 'text-gray-400');
+        }
+      });
+    }
+
+    // Logic for the empty state message
     document.addEventListener('DOMContentLoaded', () => {
       const cards = document.querySelectorAll('.episode-card');
       const empty = document.getElementById('empty-msg');
@@ -275,7 +253,6 @@
       }
     });
   </script>
-
 </body>
 </html>
 
